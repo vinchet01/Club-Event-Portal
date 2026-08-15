@@ -9,7 +9,10 @@
             <div class="navbar-nav">
                 <a class="nav-link" href="/">Home</a>
                 <a class="nav-link" href="/events">Events</a>
+                <% if (currentUser && currentUser.role === 'admin') { %>
                 <a class="nav-link" href="/events/new">New Event</a>
+                <% } %>
+            
             </div>
         </div>
     </div>

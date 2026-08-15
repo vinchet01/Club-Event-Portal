@@ -18,12 +18,16 @@
                 <li class="list-group-item text-muted">Time: <%= event.time%></li>
                 <li class="list-group-item text-muted">Capacity: <%= event.capacity%></li>
             </ul>
+
+<% if (currentUser && currentUser.role === 'admin') { %>
             <div class="card-body">
                 <a class="card-link btn btn-info" href="/events/<%=event._id%>/edit">Edit</a>
                 <form class="d-inline" action="/events/<%=event._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
+<% } %>
+
             <div class="card-footer text-muted">
                 <p class="list-group-item text-muted">Posted at: <%= event.createdAt.toLocaleString("en-IN", {
                 dateStyle: "medium",

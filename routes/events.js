@@ -2,13 +2,14 @@ const express=require('express');
 const mongoose = require('mongoose');
 const router=express.Router();
 const Event = require('../models/event');
+const {isAdmin, isLoggedIn} = require('../middleware');
 
 
 
 
 // all events page
 
-router.get('/', async (req, res) => {
+router.get('/',isLoggedIn, async (req, res) => {
     const events = await Event.find({});
     res.render('events/index', { events })
 });
@@ -16,14 +17,14 @@ router.get('/', async (req, res) => {
 
 // new event page
 
-router.get('/new', (req, res) => {
+router.get('/new',isAdmin, (req, res) => {
     res.render('events/new');
 })
 
 
 // create new event route
 
-router.post('/', async (req, res) => {
+router.post('/',isAdmin, async (req, res) => {
     const event = new Event(req.body.event);
     await event.save();
     req.flash('success','Successfully made a new event!');
@@ -33,7 +34,7 @@ router.post('/', async (req, res) => {
 
 //each event show page
 
-router.get('/:id', async (req, res) => {
+router.get('/:id',isLoggedIn, async (req, res) => {
     const { id } = req.params;
     const event = await Event.findById(id);
 
@@ -48,7 +49,7 @@ router.get('/:id', async (req, res) => {
 
 //event edit page
 
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit',isAdmin, async (req, res) => {
     const { id } = req.params;
 
     const event = await Event.findById(id);
@@ -63,7 +64,7 @@ router.get('/:id/edit', async (req, res) => {
 
 // edit event route
 
-router.put('/:id', async (req, res) => {
+router.put('/:id',isAdmin, async (req, res) => {
     const { id } = req.params;
     const event = await Event.findByIdAndUpdate(id, { ...req.body.event });
     req.flash('success','Successfully updated the event.')
@@ -73,7 +74,7 @@ router.put('/:id', async (req, res) => {
 
 // delete event route
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',isAdmin, async (req, res) => {
     const { id } = req.params;
     await Event.findByIdAndDelete(id);
     req.flash('success','Successfully deleted the event.')
