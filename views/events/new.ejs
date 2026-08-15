@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">New Event</h1>
+    <div class="col-6 offset-3">
+        <form action="/events" method="POST">
+
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="event[title]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="location">Venue</label>
+                <input class="form-control" type="text" id="venue" name="event[venue]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="thumbnail">Thumbnail Url</label>
+                <input class="form-control" type="text" id="thumbnail" name="event[thumbnail]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="event[description]"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="date">Date</label>
+                <input
+                    class="form-control"
+                    type="date"
+                    id="date"
+                    name="event[date]"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="time">Time</label>
+                <input class="form-control" type="time" id="time" name="event[time]">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="capacity">Capacity</label>
+                <input class="form-control" type="number" id="capacity" name="event[capacity]">
+            </div>
+
+
+            <div class="mb-3">
+                <button class="btn btn-success">Add Event</button>
+            </div>
+        </form>
+        <a href="/events">All Events</a>
+    </div>
+</div>
