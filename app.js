@@ -12,6 +12,7 @@ const User=require('./models/user');
 
 const userRoutes=require('./routes/users');
 const eventRoutes=require('./routes/events');
+const adminRoutes=require('./routes/admin');
 
 
 mongoose.connect('mongodb://localhost:27017/events', {
@@ -81,6 +82,7 @@ app.use((req, res, next) => {
 //route handler
 app.use('/',userRoutes);
 app.use('/events',eventRoutes);
+app.use('/admin',adminRoutes);
 
 // home/landing page
 

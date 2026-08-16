@@ -21,10 +21,18 @@
                 <p class="card-text">Time: <%= event.time %></p>
                 <p class="card-text">Capacity: <%= event.capacity %></p>
 
-                <a class="btn btn-primary" href="/events/<%=event._id%>">View <%=event.title%></a>
+                
+                <a class="card-link btn btn-info" href="/events/<%=event._id%>/registrations">See Registrations</a>
+              
+            <div class="card-body">
+                <a class="card-link btn btn-info" href="/events/<%=event._id%>/edit">Edit</a>
+                <form class="d-inline" action="/events/<%=event._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+
+            </div>
             </div>
         </div>
     </div>
 </div>
-
 <% }%>

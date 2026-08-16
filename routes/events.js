@@ -9,10 +9,13 @@ const {isAdmin, isLoggedIn} = require('../middleware');
 
 // all events page
 
-router.get('/',isLoggedIn, async (req, res) => {
+router.get('/', async (req, res) => {
     const events = await Event.find({});
     res.render('events/index', { events })
 });
+
+
+
 
 
 // new event page
@@ -68,7 +71,64 @@ router.put('/:id',isAdmin, async (req, res) => {
     const { id } = req.params;
     const event = await Event.findByIdAndUpdate(id, { ...req.body.event });
     req.flash('success','Successfully updated the event.')
-    res.redirect(`/events/${event._id}`)
+    res.redirect('../admin');
+});
+
+// event registrations
+
+router.post('/:id/register', isLoggedIn, async (req, res) => {
+    const event = await Event.findById(req.params.id);
+
+    if (!event) {
+        req.flash('error', 'Event not found');
+        return res.redirect('/events');
+    }
+
+    if (req.user.role === 'admin') {
+        req.flash('error', 'Admins cannot register for events');
+        return res.redirect(`/events/${event._id}`);
+    }
+
+    const alreadyRegistered = event.registrations.some(
+        registration => registration.email === req.user.email
+    );
+
+    if (alreadyRegistered) {
+        req.flash('error', 'You have already registered for this event');
+        return res.redirect(`/events/${event._id}`);
+    }
+
+    if (event.registrations.length >= event.capacity) {
+        req.flash('error', 'This event is full');
+        return res.redirect(`/events/${event._id}`);
+    }
+
+    event.registrations.push({
+        username: req.user.username,
+        email: req.user.email
+    });
+
+    await event.save();
+
+    req.flash('success', 'Successfully registered for the event');
+    res.redirect(`/events/${event._id}`);
+});
+
+
+// See event registrations page
+router.get('/:id/registrations', isAdmin, async (req, res) => {
+    const { id } = req.params;
+
+    const event = await Event.findById(id);
+
+    if (!event) {
+        req.flash('error', 'Event not found');
+        return res.redirect('/events');
+    }
+
+
+    res.render('eventregistrations', {
+        event});
 });
 
 
@@ -78,7 +138,7 @@ router.delete('/:id',isAdmin, async (req, res) => {
     const { id } = req.params;
     await Event.findByIdAndDelete(id);
     req.flash('success','Successfully deleted the event.')
-    res.redirect('/events');
+    res.redirect('../admin');
 })
 
 

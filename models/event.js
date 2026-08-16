@@ -48,7 +48,19 @@ const eventSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    registrations:[
+        {
+        username:{
+            type:String,
+            required:true
+        },
+        email:{
+            type:String,
+            required:true
+        }
+        }
+    ]
 });
 
 module.exports = mongoose.model("Event", eventSchema);
