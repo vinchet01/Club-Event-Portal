@@ -1,38 +1,56 @@
-<% layout('layouts/boilerplate')%>
+<% layout('layouts/boilerplate') %>
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+    <div>
+        <p class="page-kicker mb-2">Administration</p>
+        <h1 class="fw-bold mb-1">Event Dashboard</h1>
+        <p class="text-muted mb-0">Manage events and review registrations.</p>
+    </div>
+    <a href="/events/new" class="btn btn-primary">
+        <i class="bi bi-plus-lg me-1"></i>
+        New Event
+    </a>
+</div>
 
-<h1>All Events</h1>
-
-<% for (let event of events){%>
-<div class="card mb-3">
-    <div class="row">
-        <div class="col-md-4">
-            <img class="img-fluid" alt="" src="<%=event.thumbnail%>">
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title"><%= event.title %> </h5>
-                <p class="card-text"><%= event.description %></p>
-                <p class="card-text">
-                    <small class="text-muted"><%= event.venue%></small>
-                </p>
-                <p class="card-text">
-                Date: <%= event.date.toLocaleDateString("en-IN") %>
-                </p>
-                <p class="card-text">Time: <%= event.time %></p>
-                <p class="card-text">Capacity: <%= event.capacity %></p>
-
+<div class="row g-4">
+    <% for(let event of events){ %>
+    <div class="col-md-6 col-xl-4">
+        <article class="event-card h-100 d-flex flex-column">
+        <img src="<%= event.thumbnail %>" alt="<%= event.title %>">
+        <div class="p-4 d-flex flex-column flex-grow-1">
+            <h2 class="h4 fw-bold"><%= event.title %></h2>
+            <p class="text-muted flex-grow-1"><%= event.description %></p>
+            <div class="small mb-3">
+                <div class="mb-2">
+                <i class="bi bi-geo-alt text-primary me-2"></i>
+                    <%= event.venue %>
                 
-                <a class="card-link btn btn-info" href="/events/<%=event._id%>/registrations">See Registrations</a>
-              
-            <div class="card-body">
-                <a class="card-link btn btn-info" href="/events/<%=event._id%>/edit">Edit</a>
-                <form class="d-inline" action="/events/<%=event._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
-
             </div>
+            <div>
+                <i class="bi bi-calendar3 text-primary me-2"></i>
+                <%= event.date.toLocaleDateString('en-IN') %> at <%= event.time %>
+                
+            </div>
+            </div>
+            <div class="d-grid gap-2">
+                <a class="btn btn-primary" href="/events/<%= event._id %>/registrations">
+                    <i class="bi bi-people me-1"></i>
+                    See Registrations
+                </a>
+                <div class="d-flex gap-2">
+                <a class="btn btn-outline-secondary flex-grow-1" href="/events/<%= event._id %>/edit">
+                    <i class="bi bi-pencil me-1"></i>
+                    Edit
+                </a>
+                <form class="flex-grow-1" action="/events/<%= event._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-outline-danger w-100">
+                        <i class="bi bi-trash me-1"></i>
+                        Delete
+                    </button>
+                </form>
             </div>
         </div>
     </div>
+</article>
 </div>
-<% }%>
+<% } %>
+</div>

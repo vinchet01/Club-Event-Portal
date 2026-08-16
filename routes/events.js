@@ -31,7 +31,7 @@ router.post('/',isAdmin, async (req, res) => {
     const event = new Event(req.body.event);
     await event.save();
     req.flash('success','Successfully made a new event!');
-    res.redirect(`/events/${event._id}`)
+    res.redirect('../admin')
 })
 
 

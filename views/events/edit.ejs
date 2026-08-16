@@ -1,68 +1,54 @@
-<% layout('layouts/boilerplate')%>
-<div class="row">
-    <h1 class="text-center">Edit Event</h1>
-    <div class="col-6 offset-3">
-        <form action="/events/<%=event._id%>?_method=PUT" method="POST">
-
-            <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="event[title]"
-                    value="<%=event.title %>">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="venue">Venue</label>
-                <input class="form-control" type="text" id="venue" name="event[venue]"
-                    value="<%=event.venue %>">
-            </div>
-
-
-            <div class="mb-3">
-                <label class="form-label" for="thumbnail">Thumbnail Url</label>
-                <input class="form-control" type="text" id="thumbnail" name="event[thumbnail]"
-                    value="<%=event.thumbnail %>">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description"
-                    name="event[description]"><%= event.description%></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="date">Date</label>
-                <input
-                    class="form-control"
-                    type="date"
-                    id="date"
-                    name="event[date]"
-                    value="<%= event.date.toISOString().split('T')[0] %>"
-                >
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="time">Time</label>
-                <input class="form-control" type="time" id="time" name="event[time]"
-                    value="<%=event.time %>">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label" for="capacity">Capacity</label>
-                <input class="form-control" type="number" id="capacity" name="event[capacity]"
-                    value="<%=event.capacity %>">
-            </div>
-
-            
-
-
-
-
-            <div class="mb-3">
-                <button class="btn btn-info">Update Event</button>
-            </div>
-        </form>
-        
-        <a href="/admin">Back To Admin</a>
-
-    </div>
+<% layout('layouts/boilerplate') %>
+<div class="mx-auto" style="max-width:850px">
+<div class="mb-4">
+<p class="page-kicker mb-2">Admin workspace</p>
+<h1 class="fw-bold mb-1">Edit Event</h1>
+<p class="text-muted">
+Update the details for 
+<%= event.title %>.
+</p>
+</div>
+<div class="surface-card p-4 p-lg-5">
+<form action="/events/<%= event._id %>?_method=PUT" method="POST">
+<div class="row g-4"><div class="col-md-6">
+<label class="form-label fw-semibold" for="title">
+Event title
+</label>
+<input class="form-control" type="text" id="title" name="event[title]" value="<%= event.title %>">
+</div>
+<div class="col-md-6">
+<label class="form-label fw-semibold" for="venue">Venue</label>
+<input class="form-control" type="text" id="venue" name="event[venue]" value="<%= event.venue %>">
+</div>
+<div class="col-12">
+    <label class="form-label fw-semibold" for="thumbnail">Thumbnail URL</label>
+<input class="form-control" type="text" id="thumbnail" name="event[thumbnail]" value="<%= event.thumbnail %>">
+</div>
+<div class="col-12">
+<label class="form-label fw-semibold" for="description">Description</label>
+<textarea class="form-control" id="description" name="event[description]"><%= event.description %>
+</textarea>
+</div>
+<div class="col-md-4">
+<label class="form-label fw-semibold" for="date">Date</label>
+<input class="form-control" type="date" id="date" name="event[date]" value="<%= event.date.toISOString().split('T')[0] %>">
+</div>
+<div class="col-md-4">
+<label class="form-label fw-semibold" for="time">Time</label>
+<input class="form-control" type="time" id="time" name="event[time]" value="<%= event.time %>">
+</div>
+<div class="col-md-4">
+<label class="form-label fw-semibold" for="capacity">Capacity</label>
+<input class="form-control" type="number" id="capacity" name="event[capacity]" value="<%= event.capacity %>">
+</div>
+</div>
+<div class="d-flex flex-wrap gap-2 mt-4">
+<button class="btn btn-primary px-4">
+<i class="bi bi-check2 me-1"></i>
+Update Event
+</button>
+<a class="btn btn-outline-secondary px-4" href="/admin">Cancel</a>
+</div>
+</form>
+</div>
 </div>

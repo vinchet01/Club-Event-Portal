@@ -1,38 +1,56 @@
-<% layout('layouts/boilerplate')%>
-
-<div class="row">
-    <div class="col-6 offset-3">
-        <div class="card mb-3">
-            <img src="<%= event.thumbnail%>" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title"><%= event.title%></h5>
-                <p class="card-text"><%= event.description%></p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item text-muted">Venue: <%= event.venue%></li>
-                <li class="list-group-item text-muted">Date: <%= event.date.toLocaleDateString("en-IN", {
-                day: "numeric",
-                month: "long",
-                year: "numeric"
-                }) %></li>
-                <li class="list-group-item text-muted">Time: <%= event.time%></li>
-                <li class="list-group-item text-muted">Capacity: <%= event.capacity%></li>
-            </ul>
-            
-            <div class="card-body">
-    <form class="d-inline" action="/events/<%=event._id%>/register" method="POST">
-        <button class="btn btn-success">Register for event</button>
-    </form>
-            </div>
-
-
-
-            <div class="card-footer text-muted">
-                <p class="list-group-item text-muted">Posted at: <%= event.createdAt.toLocaleString("en-IN", {
-                dateStyle: "medium",
-                timeStyle: "short"
-                }) %></p>
-            </div>
-        </div>
+<% layout('layouts/boilerplate') %>
+<div class="mb-4"><a href="/events" class="text-decoration-none">
+    <i class="bi bi-arrow-left me-1"></i>
+    Back to events
+</a>
+</div>
+<article class="surface-card overflow-hidden mx-auto" style="max-width:960px">
+    <img src="<%= event.thumbnail %>" class="event-cover" alt="<%= event.title %>">
+    <div class="p-4 p-lg-5">
+<p class="page-kicker mb-2">Event details</p>
+<h1 class="fw-bold mb-3"><%= event.title %></h1>
+<p class="lead text-muted mb-4"><%= event.description %></p>
+<div class="row g-3 mb-4"><div class="col-sm-6">
+    <div class="stat-card h-100">
+    <i class="bi bi-geo-alt text-primary me-2"></i>
+    <strong>Venue</strong>
+    <div class="text-muted mt-1">
+        <%= event.venue %>
     </div>
 </div>
+</div>
+<div class="col-sm-6">
+<div class="stat-card h-100">
+<i class="bi bi-calendar3 text-primary me-2"></i>
+<strong>Date</strong>
+<div class="text-muted mt-1"><%= event.date.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'}) %></div></div></div><div class="col-sm-6">
+    <div class="stat-card h-100">
+<i class="bi bi-clock text-primary me-2"></i>
+<strong>Time</strong>
+<div class="text-muted mt-1">
+<%= event.time %>
+</div>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="stat-card h-100"><i class="bi bi-people text-primary me-2"></i>
+<strong>Capacity</strong>
+<div class="text-muted mt-1">
+<%= event.capacity %> participants
+</div>
+</div>
+</div>
+</div>
+<form action="/events/<%= event._id %>/register" method="POST">
+    <button class="btn btn-success btn-lg px-4">
+<i class="bi bi-check2-circle me-2"></i>
+Register for Event
+</button>
+</form>
+<hr class="my-4">
+<p class="small text-muted mb-0">
+<i class="bi bi-clock-history me-1"></i>
+Posted at <%= event.createdAt.toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'}) %>
+</p>
+</div>
+</article>

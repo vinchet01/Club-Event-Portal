@@ -1,24 +1,59 @@
-<% layout('layouts/boilerplate2')%>
-<h1>Login</h1>
-<form action="/login" method="POST" class="validated-form" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
-    
-    <div class="mb-3">
-        <label class="form-label" for="password">Password</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">
-            Looks good!
-        </div>
-    </div>
+<% layout('layouts/boilerplate2') %>
 
-    <button class="btn btn-success">Login</button>
-</form>
-<div>
-<span>if you dont have an account,please register</span><a class="btn btn-primary" href="/register">Register</a>
-</div>
+<style>
+    .auth-page { min-height:100vh; display:grid; place-items:center; padding:3rem 1rem; background:radial-gradient(circle at 15% 20%,rgba(99,102,241,.14),transparent 30%),radial-gradient(circle at 85% 80%,rgba(168,85,247,.12),transparent 30%),#f8fafc; }
+    .auth-card { width:100%; max-width:980px; overflow:hidden; border:0; border-radius:1.5rem; background:#fff; box-shadow:0 24px 70px rgba(30,41,59,.14); }
+    .auth-side { min-height:570px; padding:3rem; display:flex; flex-direction:column; justify-content:center; color:#fff; background:linear-gradient(145deg,#0b1023,#24205d 60%,#55258b); }
+    .auth-side-icon { width:64px; height:64px; display:grid; place-items:center; border-radius:1rem; background:rgba(255,255,255,.12); font-size:1.8rem; }
+    .auth-form { padding:3rem; }
+    .auth-form .form-control { min-height:52px; padding-left:2.8rem; border-radius:.8rem; border-color:#dfe3eb; }
+    .auth-form .form-control:focus { border-color:#6366f1; box-shadow:0 0 0 .25rem rgba(99,102,241,.13); }
+    .input-wrap { position:relative; }
+    .input-wrap > i { position:absolute; z-index:2; left:1rem; top:50%; transform:translateY(-50%); color:#7c8495; }
+    .auth-submit { min-height:52px; border:0; border-radius:.8rem; background:linear-gradient(90deg,#6366f1,#8b5cf6); font-weight:700; }
+    .auth-submit:hover { background:linear-gradient(90deg,#5558e6,#7c4ee8); }
+    @media (max-width:767.98px) { .auth-side { min-height:auto; padding:2rem; } .auth-form { padding:2rem; } }
+</style>
+
+<section class="auth-page">
+    <div class="auth-card">
+        <div class="row g-0">
+            <div class="col-md-5 auth-side">
+                <div class="auth-side-icon mb-4"><i class="bi bi-calendar2-check"></i></div>
+                <p class="text-uppercase small fw-bold mb-2 opacity-75">CODEAI Pulse</p>
+                <h1 class="display-6 fw-bold">Welcome back.</h1>
+                <p class="mt-3 mb-0 text-white-50">Sign in to explore campus events and manage your registrations.</p>
+            </div>
+
+            <div class="col-md-7 auth-form">
+                <a href="/" class="text-decoration-none small"><i class="bi bi-arrow-left me-1"></i>Back to home</a>
+                <h2 class="fw-bold mt-4 mb-1">Login</h2>
+                <p class="text-muted mb-4">Enter your account details to continue.</p>
+
+                <form action="/login" method="POST" class="validated-form" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold" for="username">Username</label>
+                        <div class="input-wrap">
+                            <i class="bi bi-person"></i>
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" required>
+                            <div class="invalid-feedback">Please enter your username.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold" for="password">Password</label>
+                        <div class="input-wrap">
+                            <i class="bi bi-lock"></i>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                            <div class="invalid-feedback">Please enter your password.</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary auth-submit w-100" type="submit">Login <i class="bi bi-arrow-right ms-1"></i></button>
+                </form>
+
+                <p class="text-center text-muted mt-4 mb-0">Don't have an account? <a class="fw-semibold text-decoration-none" href="/register">Create an account</a></p>
+            </div>
+        </div>
+    </div>
+</section>

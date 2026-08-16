@@ -1,29 +1,30 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">CODEAI Pulse</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/events">Events</a>
-                <% if (currentUser && currentUser.role === 'admin') { %>
-                <a class="nav-link" href="/events/new">New Event</a>
-                <a class="nav-link" href="/admin">Admin</a>
-
-                <% } %>
-            
-            </div>
-            <div class="navbar-nav ml-auto">
-                <% if(!currentUser) { %>
-            <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/register">Register</a>
-            <% } else { %>
-            <a class="nav-link" href="/logout">Logout</a>
-            <% } %>
-        </div>
-        </div>
-    </div>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark py-3" style="background:#0b1023;box-shadow:0 4px 18px rgba(0,0,0,.15)">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-4" href="/">
+        <i class="bi bi-stars me-2 text-info"></i>
+        CODEAI Pulse
+    </a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<div class="navbar-nav ms-lg-4 fs-5">
+<a class="nav-link" href="/">Home</a>
+<a class="nav-link" href="/events">Events</a>
+<% if(currentUser && currentUser.role === 'admin'){ %>
+    <a class="nav-link" href="/events/new">New Event</a>
+    <a class="nav-link" href="/admin">Admin</a><% } %>
+</div>
+<div class="navbar-nav ms-auto align-items-lg-center gap-lg-2 fs-5">
+    <% if(!currentUser){ %>
+<a class="nav-link" href="/login">Login</a>
+<a class="btn btn-primary btn-sm px-3 mt-2 mt-lg-0" href="/register">Register</a>
+<% } else { %><span class="navbar-text small me-lg-2">
+    <i class="bi bi-person-circle me-1"></i><%= currentUser.username %>
+</span>
+<a class="nav-link" href="/logout">Logout</a>
+<% } %>
+</div>
+</div>
+</div>
 </nav>

@@ -1,16 +1,55 @@
-<% layout('layouts/boilerplate2')%>
+<% layout('layouts/boilerplate2') %>
 
+<section class="hero-section">
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-100 py-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <span class="hero-badge"><i class="bi bi-stars"></i>
+                     Discover. Connect. Participate.
+                    </span>
+                <h1 class="display-3 fw-bold mt-4 mb-3">Your campus events,
+                    <br>
+                    <span class="gradient-text">all in one place.</span>
+                </h1>
+                <p class="lead text-white-50 mb-4 mx-auto mx-lg-0">Discover workshops, club activities and competitions happening across campus with CODEAI Pulse.</p>
 
-<h1>HOME! CODEAI PULSE</h1>
+                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                    <a class="btn btn-light btn-lg px-4" href="/events">
+                        <i class="bi bi-calendar-event me-2"></i>
+                        Explore Events
+                    </a>
+                    <% if (!currentUser) { %>
+                        <a class="btn btn-outline-light btn-lg px-4" href="/login">Login</a>
+                        <a class="btn btn-primary btn-lg px-4" href="/register">Register</a>
+                    <% } else if (currentUser.role === 'admin') { %>
+                        <a class="btn btn-primary btn-lg px-4" href="/admin">
+                            <i class="bi bi-speedometer2 me-2"></i>
+                            Admin Dashboard
+                        </a>
+                    <% } %>
+                </div>
+            </div>
 
-    <div>
-            <img class="img-fluid" alt="" src="/images/codeai logo.jpg">
+            <div class="col-lg-6 mt-5 mt-lg-0 text-center">
+                <div class="hero-image-wrapper">
+                    <div class="image-glow"></div>
+                    <img class="hero-image img-fluid" src="/images/codeaipulse.png" alt="CODEAI Pulse">
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 
-<div>
-        <a class="btn btn-primary btn-lg" href="/events">All Events</a>
-</div>
-<div>
-    <a class="btn btn-outline-primary btn-lg" href="/login">Login</a>
-    <a class="btn btn-success btn-lg" href="/register">Register</a>
-</div>
+<section class="features-section py-5">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <p class="section-label mb-2">WHY CODEAI PULSE?</p>
+            <h2 class="fw-bold">Never miss a campus opportunity</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4"><div class="feature-card h-100"><div class="feature-icon"><i class="bi bi-search"></i></div><h3 class="h5 fw-bold">Discover Events</h3><p class="text-muted mb-0">Find upcoming workshops, competitions and club activities.</p></div></div>
+            <div class="col-md-4"><div class="feature-card h-100"><div class="feature-icon"><i class="bi bi-check2-circle"></i></div><h3 class="h5 fw-bold">Quick Registration</h3><p class="text-muted mb-0">Register for an event in seconds using your student account.</p></div></div>
+            <div class="col-md-4"><div class="feature-card h-100"><div class="feature-icon"><i class="bi bi-people"></i></div><h3 class="h5 fw-bold">Build Community</h3><p class="text-muted mb-0">Meet students who share your interests and learn together.</p></div></div>
+        </div>
+    </div>
+</section>

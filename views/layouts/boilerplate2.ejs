@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CODEAI Pulse</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        :root { --pulse-blue:#6366f1; --pulse-purple:#a855f7; }
+        body { min-height:100vh; background:#f8fafc; color:#172033; }
+        main { flex:1; }
+        .hero-section { overflow:hidden; color:white; background:radial-gradient(circle at 80% 25%,rgba(99,102,241,.34),transparent 30%),radial-gradient(circle at 15% 75%,rgba(168,85,247,.2),transparent 28%),linear-gradient(135deg,#070b18 0%,#111936 55%,#17113b 100%); }
+        .hero-badge { display:inline-flex; align-items:center; gap:.5rem; padding:.55rem 1rem; border:1px solid rgba(255,255,255,.18); border-radius:999px; background:rgba(255,255,255,.08); font-size:.9rem; }
+        .gradient-text { color:#a5b4fc; background:linear-gradient(90deg,#a5b4fc,#e9b8ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero-section .lead { max-width:570px; }
+        .hero-section .btn { border-radius:.8rem; font-weight:600; }
+        .hero-section .btn-primary { border-color:var(--pulse-blue); background:var(--pulse-blue); }
+        .hero-image-wrapper { position:relative; display:inline-block; width:min(100%,480px); }
+        .image-glow { position:absolute; inset:8%; border-radius:50%; background:var(--pulse-purple); filter:blur(70px); opacity:.28; }
+        .hero-image { position:relative; width:100%; max-height:440px; object-fit:cover; border:1px solid rgba(255,255,255,.2); border-radius:2rem; box-shadow:0 30px 70px rgba(0,0,0,.4); }
+        .features-section { background:#f8fafc; }
+        .section-label { color:var(--pulse-blue); font-size:.8rem; font-weight:800; letter-spacing:.13em; }
+        .feature-card { padding:2rem; border:1px solid #e7eaf1; border-radius:1.25rem; background:white; box-shadow:0 8px 28px rgba(23,32,51,.06); transition:transform .2s ease,box-shadow .2s ease; }
+        .feature-card:hover { transform:translateY(-5px); box-shadow:0 16px 35px rgba(23,32,51,.1); }
+        .feature-icon { display:grid; place-items:center; width:48px; height:48px; margin-bottom:1.25rem; border-radius:.9rem; color:white; background:linear-gradient(135deg,var(--pulse-blue),var(--pulse-purple)); font-size:1.3rem; }
+        .flash-layer { width:min(92%,700px); z-index:1080; }
+        @media (max-width:991.98px) { .hero-section .min-vh-100 { min-height:auto!important; } .hero-section { padding:4rem 0; } .hero-image { max-height:330px; } }
+    </style>
 </head>
-
-<body class="d-flex flex-column vh-100">
-    <main class="container mt-5">
-    <%- include('../partials/flash')%>
-
+<body class="d-flex flex-column">
+    <main>
+        <div class="position-fixed top-0 start-50 translate-middle-x mt-3 flash-layer"><%- include('../partials/flash') %></div>
         <%- body %>
     </main>
-    <%- include('../partials/footer')%>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
-        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
-        crossorigin="anonymous"></script>
+    <%- include('../partials/footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
