@@ -1,3 +1,4 @@
+<h1>Home</h1>
 <img width="1353" height="635" alt="image" src="https://github.com/user-attachments/assets/4f2b8c96-3eb3-4947-9828-f0b4128a2e92" />
 
 <h1>User View</h1>
