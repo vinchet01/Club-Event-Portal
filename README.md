@@ -1,3 +1,6 @@
+<h1>About</h1>
+<p>CODEAI Pulse is a club event portal built with Node.js, Express, EJS and MongoDB. It allows students to discover and register for events, while admins can create, update, delete and manage events and view participant registrations.</p>
+
 <h1>Home</h1>
 <img width="1353" height="635" alt="image" src="https://github.com/user-attachments/assets/4f2b8c96-3eb3-4947-9828-f0b4128a2e92" />
 
